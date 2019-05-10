@@ -1,0 +1,85 @@
+<%- contentFor('body') %>
+<div class="row">
+        <div class="col-md-12">
+        <h1>Saldo: <%= saldo%></h1>
+        </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="jumbotron card">
+            <h1>Movimentação</h1>
+            <form action="/movimentacao" method="POST">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Valor</label>
+                            <input name="valor" type="number" class="form-control" id="exampleFormControlInput1" placeholder="10.00" required>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Tipo</label>
+                            <select name="tipo" class="form-control" id="exampleFormControlSelect1" required>
+                                <option value='E'>Entrada</option>
+                                <option value='S'>Saída</option>
+                            </select>
+                        </div>  
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Categoria</label>
+                            <select name="categoria" class="form-control" id="exampleFormControlSelect1" required>
+                                <% cat.forEach((c) => { %>
+                                    <option value='<%=c._id %>'><%=c.name %></option>
+                                <% }) %>    
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Observação</label>
+                            <textarea name="observacao" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+
+            </form>
+        </div>
+    </div>    
+</div>
+
+
+
+
+<div class="row ">
+    <div class="col-md-12">
+        <h1> Movimentações</h1>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                <th scope="col">Tipo</th>
+            
+                <th scope="col">Valor</th>
+                <th scope="col">Observacao</th>
+                <th scope="col">Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% mov.forEach((m) => { %>
+                    <tr>
+                        
+                        <td><%= m.tipo  %></td>
+                    
+                        <td><%= m.valor %></td>
+                        <td><%= m.observacao %></td>
+                        <td><%= m.createdAt %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>   
+    </div>
+</div>

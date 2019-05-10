@@ -1,0 +1,31 @@
+<%- contentFor('body') %>
+<div class="row">
+    <div class="col-md-12">
+        <div class="jumbotron">
+                <h1>Nova Categoria</h1>
+            <form action="/categorias" method="POST">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Nome</label>
+                  <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nome da categoria" required>
+                  
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </div>
+    </div>    
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <h1>Lista de Categorias</h1>
+        <ul class="list-group">
+            <% if(cat){ %>
+                <% cat.forEach((c) => { %>
+                    <li class="list-group-item"><%=  c.name %></li>
+                <% }) %>
+            <% } %>
+        </ul>
+        
+    </div>
+</div>
+
+
